@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿
 using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -34,17 +32,6 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         {
             _context.Set<Sale>().Update(sale);
             await _context.SaveChangesAsync(cancellationToken);
-        }
-        
-        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
-        {
-            var sale = await GetByIdAsync(id, cancellationToken);
-            if (sale == null)
-                return false;
-
-            _context.Set<Sale>().Remove(sale);
-            await _context.SaveChangesAsync(cancellationToken);
-            return true;
         }
     }
 }

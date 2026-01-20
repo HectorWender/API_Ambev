@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.Request
 {
     public class CreateSaleItemRequest
     {

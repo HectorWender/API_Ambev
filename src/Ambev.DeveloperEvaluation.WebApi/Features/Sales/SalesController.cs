@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
-using Ambev.DeveloperEvaluation.WebApi.Common; // Onde deve estar o BaseController e ApiResponse
-using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
+using Ambev.DeveloperEvaluation.WebApi.Common; 
 using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
-using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale; // Novo namespace
-using Ambev.DeveloperEvaluation.Application.Sales.CancelSale; // Novo namespace
+using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale; 
+using Ambev.DeveloperEvaluation.Application.Sales.CancelSale; 
+using Ambev.DeveloperEvaluation.WebApi.Features.Sales.Request;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
 {

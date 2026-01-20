@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.Request
 {
     public class CreateSaleRequest
     {

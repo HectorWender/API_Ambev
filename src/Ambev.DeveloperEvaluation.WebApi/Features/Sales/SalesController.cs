@@ -7,7 +7,8 @@ using AutoMapper;
 using Ambev.DeveloperEvaluation.WebApi.Common; 
 using Ambev.DeveloperEvaluation.Application.Sales.GetSale;
 using Ambev.DeveloperEvaluation.Application.Sales.UpdateSale; 
-using Ambev.DeveloperEvaluation.Application.Sales.CancelSale; 
+using Ambev.DeveloperEvaluation.Application.Sales.CancelSale;
+using Ambev.DeveloperEvaluation.Application.Sales.CreateSale;
 using Ambev.DeveloperEvaluation.WebApi.Features.Sales.Request;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales

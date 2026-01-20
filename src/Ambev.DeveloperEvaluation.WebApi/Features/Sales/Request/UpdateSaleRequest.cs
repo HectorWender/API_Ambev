@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Ambev.DeveloperEvaluation.Domain.Enums; // Para acessar SaleStatus se necessário
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales.Request
 {
     // Geralmente no Update permitimos alterar quase tudo, exceto talvez o Número da Venda
     public class UpdateSaleRequest

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Ambev.DeveloperEvaluation.Domain.Enums;
-
-namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
+﻿namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
 {
     public class GetSaleResult
     {
@@ -14,7 +10,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
         public Guid BranchId { get; set; }
         public string BranchName { get; set; }
         public decimal TotalAmount { get; set; }
-        public string Status { get; set; } // Retornar como String é mais amigável para o Front
+        public string Status { get; set; } // Returning as a String is more front-end "friendly"
 
         public List<GetSaleItemResult> Items { get; set; }
     }

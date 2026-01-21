@@ -1,6 +1,90 @@
-@Ambev.DeveloperEvaluation.WebApi_HostAddress = http://localhost:5119
+@HostAddress = http://localhost:5119
 
-GET {{Ambev.DeveloperEvaluation.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
+# 1. CRIAR UMA VENDA (CreateSale)
+# Esperado: 201 Created com o ID da venda e desconto aplicado (5 itens = 10% off)
+POST {{HostAddress}}/api/sales
+Content-Type: application/json
+
+{
+  "saleNumber": "SALE-2024-001",
+  "saleDate": "2024-01-20T10:00:00Z",
+  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "customerName": "João da Silva",
+  "branchId": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "branchName": "Filial São Paulo",
+  "items": [
+    {
+      "productId": "1fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "productName": "Cerveja Brahma 600ml",
+      "quantity": 5,
+      "unitPrice": 10.00
+    },
+    {
+      "productId": "2fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "productName": "Skol Lata",
+      "quantity": 2,
+      "unitPrice": 5.00
+    }
+  ]
+}
 
 ###
+
+# 2. BUSCAR UMA VENDA PELO ID (GetSale)
+# Substitua o GUID abaixo pelo ID retornado na requisição anterior
+GET {{HostAddress}}/api/sales/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Accept: application/json
+
+{
+  "saleNumber": "SALE-2024-001",
+  "saleDate": "2024-01-20T10:00:00Z",
+  "customerId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "customerName": "João da Silva",
+  "branchId": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "branchName": "Filial São Paulo",
+  "items": [
+    {
+      "productId": "1fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "productName": "Cerveja Brahma 600ml",
+      "quantity": 5,
+      "unitPrice": 10.00
+    },
+    {
+      "productId": "2fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "productName": "Skol Lata",
+      "quantity": 2,
+      "unitPrice": 5.00
+    }
+  ]
+}
+
+###
+
+# 3. ATUALIZAR UMA VENDA (UpdateSale)
+# Modifica o cliente e altera a quantidade de itens (recalculando desconto)
+PUT {{HostAddress}}/api/sales/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Content-Type: application/json
+
+{
+  "saleDate": "2024-01-21T10:00:00Z",
+  "customerId": "99a85f64-5717-4562-b3fc-2c963f66afa6",
+  "customerName": "Maria Oliveira",
+  "branchId": "4fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "branchName": "Filial Rio de Janeiro",
+  "isCancelled": false,
+  "items": [
+    {
+      "productId": "1fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "productName": "Cerveja Brahma 600ml",
+      "quantity": 12,
+      "unitPrice": 10.00
+    }
+  ]
+}
+
+###
+
+# 4. CANCELAR UMA VENDA (CancelSale)
+# Muda o status para Cancelled sem apagar o registro
+DELETE {{HostAddress}}/api/sales/3fa85f64-5717-4562-b3fc-2c963f66afa6
+Accept: application/json

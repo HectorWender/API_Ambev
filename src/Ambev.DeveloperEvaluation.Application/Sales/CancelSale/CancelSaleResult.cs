@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale
+﻿namespace Ambev.DeveloperEvaluation.Application.Sales.CancelSale
 {
     public class CancelSaleResult
     {

@@ -1,18 +1,32 @@
-﻿using System;
-using Ambev.DeveloperEvaluation.Domain.Common;
+﻿using Ambev.DeveloperEvaluation.Domain.Common;
 
-namespace Ambev.DeveloperEvaluation.Domain.Entities
+namespace Ambev.DeveloperEvaluation.Domain.Entities.Sales
 {
     public class SaleItem : BaseEntity
     {
         public Guid SaleId { get; set; }
         public Guid ProductId { get; set; }
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = null!;
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal Discount { get; set; }
         public decimal TotalAmount { get; set; }
         public bool IsCancelled { get; set; }
+
+        public SaleItem()
+        {
+        }
+
+        public SaleItem(Guid productId, string productName, decimal unitPrice, int quantity)
+        {
+            ProductId = productId;
+            ProductName = productName;
+            UnitPrice = unitPrice;
+            Quantity = quantity;
+
+            // Ensuring that the discount is always calculated when creating
+            ApplyDiscountRules();
+        }
 
         public void ApplyDiscountRules()
         {
@@ -25,9 +39,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
             TotalAmount = (UnitPrice * Quantity) - Discount;
         }
 
-        public void Cancel()
-        {
-            IsCancelled = true;
-        }
+        public void Cancel() => IsCancelled = true;
     }
 }

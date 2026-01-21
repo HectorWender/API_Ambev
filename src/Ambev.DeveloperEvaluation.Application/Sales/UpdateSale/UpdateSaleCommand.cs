@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using MediatR;
-using Ambev.DeveloperEvaluation.Domain.Enums;
+﻿using MediatR;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.UpdateSale
 {
     public class UpdateSaleCommand : IRequest<UpdateSaleResult>
     {
-        public Guid Id { get; set; } // O ID da venda que será atualizada
-        public string SaleNumber { get; set; } // Geralmente não muda, mas pode vir no request
+        public Guid Id { get; set; }
+        public string SaleNumber { get; set; } 
         public DateTime SaleDate { get; set; }
         public Guid CustomerId { get; set; }
         public string CustomerName { get; set; }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Ambev.DeveloperEvaluation.WebApi.Common; 
@@ -30,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         /// Creates a new sale
         /// </summary>
         /// <remarks>
-        /// The sale is created with status 'Pending' and discounts are calculated automatically based on item quantity.
+        /// The sale is created with status 'Pending' and discounts are calculated automatically based on item quantity
         /// </remarks>
         [HttpPost]
         [ProducesResponseType(typeof(ApiResponseWithData<CreateSaleResult>), 201)]
@@ -39,8 +36,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         {
             var command = _mapper.Map<CreateSaleCommand>(request);
             var response = await _mediator.Send(command, cancellationToken);
-
-            // Created usa um método auxiliar do BaseController ou padrão do .NET
+            
             return Created(string.Empty, new ApiResponseWithData<CreateSaleResult>
             {
                 Success = true,
@@ -59,8 +55,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         {
             var query = new GetSaleQuery(id);
             var response = await _mediator.Send(query, cancellationToken);
-
-            // Retorna Ok com a estrutura padrão de resposta
+            
             return Ok(new ApiResponseWithData<GetSaleResult>
             {
                 Success = true,
@@ -72,7 +67,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         /// Updates an existing sale
         /// </summary>
         /// <remarks>
-        /// Allows modifying items or customer data. Recalculates discounts automatically.
+        /// Allows modifying items or customer data. Recalculates discounts automatically
         /// </remarks>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(ApiResponseWithData<UpdateSaleResult>), 200)]
@@ -81,7 +76,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         public async Task<IActionResult> UpdateSale(Guid id, [FromBody] UpdateSaleRequest request, CancellationToken cancellationToken)
         {
             var command = _mapper.Map<UpdateSaleCommand>(request);
-            command.Id = id; // Garante que o ID da rota seja o mesmo do comando
+            command.Id = id;
 
             var response = await _mediator.Send(command, cancellationToken);
 
@@ -97,7 +92,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Sales
         /// Cancels a sale
         /// </summary>
         /// <remarks>
-        /// Does not delete the record physically, but changes its status to 'Cancelled'.
+        /// Does not delete the record physically, but changes its status to 'Cancelled'
         /// </remarks>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(ApiResponse), 200)]

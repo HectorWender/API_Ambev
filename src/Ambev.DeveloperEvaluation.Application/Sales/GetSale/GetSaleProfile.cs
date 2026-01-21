@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Ambev.DeveloperEvaluation.Domain.Entities;
+using Ambev.DeveloperEvaluation.Domain.Entities.Sales;
 
 namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
 {
@@ -8,7 +8,7 @@ namespace Ambev.DeveloperEvaluation.Application.Sales.GetSale
         public GetSaleProfile()
         {
             CreateMap<Sale, GetSaleResult>()
-                // Converte o Enum para String automaticamente
+                // Converts Enum to String automatically.
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
             
             CreateMap<SaleItem, GetSaleItemResult>();

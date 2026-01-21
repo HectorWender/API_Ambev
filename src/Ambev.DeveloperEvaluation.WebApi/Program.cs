@@ -54,6 +54,30 @@ public class Program
 
             var app = builder.Build();
             app.UseMiddleware<ValidationExceptionMiddleware>();
+            
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    Log.Information("Trying to apply migrations to the database...");
+                    var context = services.GetRequiredService<DefaultContext>();
+                    
+                    if (context.Database.GetPendingMigrations().Any())
+                    {
+                        context.Database.Migrate();
+                        Log.Information("Migrations successfully implemented!");
+                    }
+                    else
+                    {
+                         Log.Information("No pending migrations");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Critical error when creating/migrating the database");
+                }
+            }
 
             if (app.Environment.IsDevelopment())
             {
@@ -61,7 +85,7 @@ public class Program
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
